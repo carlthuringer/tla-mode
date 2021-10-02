@@ -1,11 +1,18 @@
 ;;; tla-mode.el --- Major mode for editing TLA+ files.
+
+;; Copyright (c) 2021 Carl Thuringer
+;;
+;; Author: Carl Thuringer <carl@thuringer.us>
+;; Keywords: languages tla
+;; Homepage: https://github.com/carlthuringer/tla-mode
+;; Version: 0.1.0
+;; Package-Requires: ((tree-sitter "0.15.2") (tree-sitter-langs "0.10.7"))
+;; SPDX-License-Identifier: GPL-3.0-or-later
+
+
 ;;; Commentary:
 ;; A major mode used for editing TLA+ files.  It does not implement
 ;; syntax highlighting, as that is better provided by tree-sitter.
-
-;; This module is derived from the work of trailblazers,
-;; https://github.com/ratish-punnoose/tla-mode. Thank you for your
-;; efforts.
 
 ;; The module attempts to implement a simpler major mode that does not
 ;; provide syntax highlights. Rather, the highlights are provided by
