@@ -11,18 +11,31 @@ With `straight.el` and use-package integration
   :straight (:repo "carlthuringer/tla-mode")
   :hook ((tla-mode . tree-sitter-mode)
          (tla-mode . tree-sitter-hl-mode)))
-  
+ 
 (use-package tree-sitter-langs
-  :straight (:fork (:repo "carlthuringer/tree-sitter-langs" :branch "add-tlaplus")))
+  :straight (:repo "carlthuringer/tree-sitter-langs" :branch "add-tlaplus"
+                   :files (:defaults "bin")))
 ```
+**NOTE** I couldn't get straight to act nicely and clone my fork immediately for a fresh install. Once the fork is merged, you'll want to go back to the regular straight recipe.
 
-After cloning the repo, you have to then build the grammar binary for your system.
+
+After straight installs `tree-sitter-langs`, you need to compile the `tlaplus.so` binary for your system.
 You need to install some `node` environment, such as `volta` and configure it for your system. You will also probably need to have an available `g++` compiler. As I said, this is very WIP.
 
 ```sh
 cd ~/.config/emacs/straight/repos/tree-sitter-langs/
 script/compile tlaplus
 ```
+
+After building the binary, you then need to tell `straight.el` to rebuild the package so it copies the new `bin/tlaplus.so` to the `builds/tree-sitter-langs/bin` directory. 
+
+`M-x straight-rebuild-package tree-sitter-langs`. 
+
+**NOTE** You won't need to do the build-rebuild steps once the fork is merged because `tree-sitter-langs` uses a server to build platform binaries and fetches them as needed.
+
+After that you should be good to go!
+
+### Misc
 
 Unfortunately, with the upstream version of `tree-sitter-tlaplus`, I run into this error:
 ```
